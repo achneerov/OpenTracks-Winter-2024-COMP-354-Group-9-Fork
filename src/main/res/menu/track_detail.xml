@@ -31,6 +31,10 @@ limitations under the License.
                 android:id="@+id/month_filter"
                 android:orderInCategory="2"
                 android:title="Month" />
+            <item
+                android:id="@+id/season_filter"
+                android:orderInCategory="2"
+                android:title="Season" />
         </menu>
     </item>
     <item
