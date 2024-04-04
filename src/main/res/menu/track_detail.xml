@@ -15,6 +15,28 @@ limitations under the License.
 -->
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item android:id="@+id/filter"
+        android:icon="@drawable/ic_baseline_filter_alt_24"
+        app:showAsAction="ifRoom"
+        android:title="@string/menu_show_on_map">
+        <menu>
+            <item
+                android:id="@+id/day_filter"
+                android:title="Day" />
+            <item
+                android:id="@+id/week_filter"
+                android:orderInCategory="1"
+                android:title="Week" />
+            <item
+                android:id="@+id/month_filter"
+                android:orderInCategory="2"
+                android:title="Month" />
+            <item
+                android:id="@+id/season_filter"
+                android:orderInCategory="2"
+                android:title="Season" />
+        </menu>
+    </item>
     <item
         android:id="@+id/track_detail_menu_show_on_map"
         android:icon="@drawable/ic_map_24dp"
