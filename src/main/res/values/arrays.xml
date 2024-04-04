@@ -11,4 +11,5 @@
         <item>@string/sharing_option_share_with</item>
         <item>@string/sharing_option_public</item>
     </array>
+    <string name="day">Day</string>
 </resources>

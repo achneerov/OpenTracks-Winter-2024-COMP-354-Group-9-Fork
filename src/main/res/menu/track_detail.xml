@@ -22,19 +22,28 @@ limitations under the License.
         <menu>
             <item
                 android:id="@+id/day_filter"
-                android:title="Day" />
+                android:title="@string/day"
+                android:icon="@drawable/baseline_today_24"
+                android:orderInCategory="1"
+                app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/week_filter"
-                android:orderInCategory="1"
-                android:title="Week" />
+                android:title="@string/week"
+                android:icon="@drawable/baseline_calendar_view_week_24"
+                android:orderInCategory="2"
+                app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/month_filter"
-                android:orderInCategory="2"
-                android:title="Month" />
+                android:title="@string/month"
+                android:icon="@drawable/baseline_calendar_month_24"
+                android:orderInCategory="3"
+                app:showAsAction="ifRoom" />
             <item
                 android:id="@+id/season_filter"
-                android:orderInCategory="2"
-                android:title="Season" />
+                android:title="@string/season"
+                android:icon="@drawable/baseline_season_24"
+                android:orderInCategory="4"
+                app:showAsAction="ifRoom" />
         </menu>
     </item>
     <item
