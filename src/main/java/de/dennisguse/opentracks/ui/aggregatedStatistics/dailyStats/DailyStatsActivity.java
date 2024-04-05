@@ -8,8 +8,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
 import com.github.mikephil.charting.charts.LineChart;
-
-
 import de.dennisguse.opentracks.R;
 import de.dennisguse.opentracks.AbstractActivity;
 import de.dennisguse.opentracks.databinding.DailyStatsBinding;

@@ -1,11 +1,11 @@
 package de.dennisguse.opentracks.ui.dropDownMenuStatistics;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
-import android.app.Activity;
-import android.content.Context;
 
 import de.dennisguse.opentracks.AbstractActivity;
 import de.dennisguse.opentracks.R;
@@ -16,12 +16,22 @@ import com.github.mikephil.charting.data.LineDataSet;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MenuStatisticsActivity extends AbstractActivity {
+public class MenuStatisticsActivity extends AbstractActivity implements AdapterView.OnItemSelectedListener {
 
     private LineChart dayChart;
     private LineChart weekChart;
     private LineChart monthChart;
     private LineChart seasonChart;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.dropdown_menu_statistics);
+        dayChart = (LineChart) findViewById(R.id.dayChart);
+        weekChart = (LineChart) findViewById(R.id.weekChart);
+        monthChart = (LineChart) findViewById(R.id.monthChart);
+        seasonChart = (LineChart) findViewById(R.id.seasonChart);
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -52,8 +62,13 @@ public class MenuStatisticsActivity extends AbstractActivity {
             }
         }
 
-    private void displayDayGraph() {
-        dayChart.clear();
+    @Override
+    public Context getApplicationContext() {
+        return null;
+    }
+
+
+    protected void displayDayGraph() {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < 24; i++) {
             float yValue = (float) Math.random() * 100;
@@ -65,8 +80,7 @@ public class MenuStatisticsActivity extends AbstractActivity {
         dayChart.invalidate();
     }
 
-    private void displayWeekGraph() {
-        weekChart.clear();
+    protected void displayWeekGraph() {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < 24; i++) {
             float yValue = (float) Math.random() * 100;
@@ -78,8 +92,7 @@ public class MenuStatisticsActivity extends AbstractActivity {
         weekChart.invalidate();
     }
 
-    private void displayMonthGraph() {
-        monthChart.clear();
+    protected void displayMonthGraph() {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < 24; i++) {
             float yValue = (float) Math.random() * 100;
@@ -91,8 +104,7 @@ public class MenuStatisticsActivity extends AbstractActivity {
         monthChart.invalidate();
     }
 
-    private void displaySeasonGraph() {
-        seasonChart.clear();
+    protected void displaySeasonGraph() {
         List<Entry> entries = new ArrayList<>();
         for (int i = 0; i < 24; i++) {
             float yValue = (float) Math.random() * 100;
@@ -107,6 +119,16 @@ public class MenuStatisticsActivity extends AbstractActivity {
     @Override
     protected View getRootView() {
         return null;
+    }
+
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
     }
 }
 

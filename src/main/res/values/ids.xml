@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="dayChart" type="id" />
+    <item name="weekChart" type="id" />
+    <item name="monthChart" type="id" />
+    <item name="seasonChart" type="id" />
+</resources>
