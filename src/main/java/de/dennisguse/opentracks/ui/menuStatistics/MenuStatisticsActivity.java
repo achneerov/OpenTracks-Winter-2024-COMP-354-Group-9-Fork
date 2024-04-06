@@ -1,6 +1,5 @@
 package de.dennisguse.opentracks.ui.menuStatistics;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -31,12 +30,10 @@ public class MenuStatisticsActivity extends AbstractActivity implements AdapterV
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         if (parent.getId() == R.id.graph_selector) {
             selectedGraph = GraphChoice.values()[position];
-            Log.d("STATISTICS", "Selection: \"" + selectedGraph + "\" selected.");
         }
 
         if (selectedGraph != null) {
             menuPlottingModule.plotGraph(barChart, selectedGraph);
-            Log.d("STATISTICS_PLOTTED", "Selection: " + selectedGraph);
         }
     }
 

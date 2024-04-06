@@ -6,7 +6,7 @@ import androidx.annotation.NonNull;
 import de.dennisguse.opentracks.R;
 
 /**
- * An enum of all graph choices in the dropdown menu statistics feature.
+ * An enum of all graph choices in the dropdown bar chart menu statistics feature.
  */
 public enum GraphChoice {
     DAY("Day", R.drawable.baseline_today_24),

@@ -1,129 +1,59 @@
 package de.dennisguse.opentracks.ui.menuStatistics;
 
 import android.graphics.Color;
-import android.util.Log;
 
 import com.github.mikephil.charting.charts.BarChart;
-import com.github.mikephil.charting.data.Entry;
-import com.github.mikephil.charting.data.LineData;
-import com.github.mikephil.charting.data.LineDataSet;
-import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- * A module to aid in building the graph for visualizing menu statistics.
+ * A module to build statistical bar charts according to each menu selection.
  */
 public class MenuPlottingModule {
 
     public void plotGraph(BarChart barChart, GraphChoice choice) {
-        List<Entry> dataEntries;
-        LineDataSet metricDataSet;
-        LineDataSet runningAverageDataSet;
+        List<BarEntry> dataEntries;
+        BarDataSet dataSet = null;
 
         switch (choice) {
             case DAY -> {
-                dataEntries = getAvgSlopeEntries(TotalRunsProvider.getAllDailyRuns());
+                dataEntries = getRunsPerHourEntries(TotalRunsProvider.getAllTotalRuns());
 
-                metricDataSet = new LineDataSet(dataEntries, "Average slope line data set");
-                metricDataSet.setColor(Color.parseColor("#2774AE"));
-
-/* runningAverageDataSet = new LineDataSet(
-                        getMovingAverage(dataEntries, frequency.getValue()),
-                        "Running average line data set for average slope"
-                );
-*/
+                dataSet = new BarDataSet(dataEntries, "Number of runs per hour");
+                dataSet.setColor(Color.parseColor("#2774AE"));
             }
             case WEEK -> {
-                dataEntries = getAvgSpeedEntries(TotalRunsProvider.getAllDailyRuns());
+                dataEntries = getRunsPerWeekdayEntries(TotalRunsProvider.getAllTotalRuns());
 
-                metricDataSet = new LineDataSet(dataEntries, "Average speed line data set");
-                metricDataSet.setColor(Color.parseColor("#ED9121"));
-/*
-                runningAverageDataSet = new LineDataSet(
-                        getMovingAverage(dataEntries, frequency.getValue()),
-                        "Running average line data set for average speed"
-                );
-
- */
+                dataSet = new BarDataSet(dataEntries, "Number of runs per weekday");
+                dataSet.setColor(Color.parseColor("#ED9121"));
             }
             case MONTH -> {
-                dataEntries = getTotalDistanceEntries(TotalRunsProvider.getAllDailyRuns());
+                dataEntries = getRunsPerMonthEntries(TotalRunsProvider.getAllTotalRuns());
 
-                metricDataSet = new LineDataSet(dataEntries, "Total distance line data set");
-                metricDataSet.setColor(Color.parseColor("#F8DE7E"));
-/*
-                runningAverageDataSet = new LineDataSet(
-                        getMovingAverage(dataEntries, frequency.getValue()),
-                        "Running average line data set for total distance"
-                );
- */
+                dataSet = new BarDataSet(dataEntries, "Number of runs per month");
+                dataSet.setColor(Color.parseColor("#F8DE7E"));
             }
             case SEASON -> {
-                dataEntries = getAvgChairliftSpeedEntries(TotalRunsProvider.getAllDailyRuns());
+                dataEntries = getRunsPerSeasonEntries(TotalRunsProvider.getAllTotalRuns());
 
-                metricDataSet = new LineDataSet(dataEntries, "Average chairlift speed line data set");
-                metricDataSet.setColor(Color.parseColor("#8DB600"));
-/*
-                runningAverageDataSet = new LineDataSet(
-                        getMovingAverage(dataEntries, frequency.getValue()),
-                        "Running average line data set for average chairlift speed"
-                );
-*/
-
+                dataSet = new BarDataSet(dataEntries, "Number of runs per season");
+                dataSet.setColor(Color.parseColor("#8DB600"));
             }
-            /*
-            default -> {
-                Log.e("UNKNOWN_PLOT_GRAPH_METRIC", "plotGraph() called with an unknown metric parameter: " + metric);
-                return;
-            }
-
-             */
         }
 
-        //metricDataSet.setLineWidth(4);
-        //runningAverageDataSet.setLineWidth(4);
-        //runningAverageDataSet.setColor(Color.parseColor("#F2003C"));
-
-        //List<ILineDataSet> dataSets = new ArrayList<>();
-        //dataSets.add(metricDataSet);
-        //dataSets.add(runningAverageDataSet);
-
-        //LineData data = new LineData(dataSets);
-        //barChart.setData(data);
-        //barChart.invalidate();
+        BarData data = new BarData(dataSet);
+        barChart.setData(data);
+        barChart.invalidate();
     }
 
-    /**
-     * Method that helps calculating moving average.
-     *
-     * @param entries   This is a List of Entry objects that contains the original daily stats.
-     * @param frequency Integer representing the frequency at which moving average is sampled.
-     * @return A list containing Entry objects representing the moving averages.
-     */
-    protected List<Entry> getMovingAverage(List<Entry> entries, int frequency) {
-        ArrayList<Entry> toReturn = new ArrayList<>();
-        for (int e = 0; e <= entries.size() - frequency; e++) {
-            float x_sum = 0;
-            float y_sum = 0;
-            float x = (entries.get(e).getX() + (entries.get(e + frequency - 1).getX())) / 2;
-
-            for (int i = e; i < e + frequency; i++) {
-                y_sum += entries.get(i).getY();
-                x_sum += entries.get(i).getX();
-            }
-            float y_average = y_sum / frequency;
-            float x_average = x_sum / frequency;
-            toReturn.add(new Entry(x_average, y_average));
-        }
-
-        return toReturn;
-    }
-
-    private List<Entry> getAvgSpeedEntries(List<RunVM> runs)
+    private List<BarEntry> getRunsPerHourEntries(List<RunViewModel> runs)
     {
-        ArrayList<Entry> toReturn = new ArrayList<>();
+        ArrayList<BarEntry> toReturn = new ArrayList<>();
 
         if(runs == null || runs.isEmpty())
         {
@@ -133,15 +63,15 @@ public class MenuPlottingModule {
         for(int i=0; i<runs.size();i++)
         {
             int runEntryNumber = i + 1;
-            toReturn.add(new Entry(runEntryNumber,runs.get(i).getAvgSpeed()));
+            toReturn.add(new BarEntry(runEntryNumber,runs.get(i).getDayRuns()));
         }
 
         return toReturn;
     }
 
-    private List<Entry> getAvgChairliftSpeedEntries(List<RunVM> runs)
+    private List<BarEntry> getRunsPerWeekdayEntries(List<RunViewModel> runs)
     {
-        ArrayList<Entry> toReturn = new ArrayList<>();
+        ArrayList<BarEntry> toReturn = new ArrayList<>();
 
         if(runs == null || runs.isEmpty())
         {
@@ -151,57 +81,31 @@ public class MenuPlottingModule {
         for(int i=0; i<runs.size();i++)
         {
             int runEntryNumber = i + 1;
-            toReturn.add(new Entry(runEntryNumber,runs.get(i).getChairliftSpeed()));
+            toReturn.add(new BarEntry(runEntryNumber,runs.get(i).getWeekRuns()));
         }
 
         return toReturn;
     }
 
-    /**
-     * Method that calculates average slope of entries.
-     *
-     * @param entries   This is a List of Entry objects that contains the original daily stats.
-     * @return A list containing Entry objects representing the average slope.
-     */
-    private List<Entry> getAvgSlopeEntries(List<RunVM> entries){
-        ArrayList<Entry> toReturn = new ArrayList<>();
+    private List<BarEntry> getRunsPerMonthEntries(List<RunViewModel> runs){
+        ArrayList<BarEntry> toReturn = new ArrayList<>();
 
-
-        for (int i = 0; i < entries.size(); i++){
-            RunVM run = entries.get(i);
-            float avgSlope = run.getAvgSlope();
-            toReturn.add(new Entry(i+1, avgSlope));
-
-
+        for (int i = 0; i < runs.size(); i++){
+            RunViewModel run = runs.get(i);
+            int monthRuns = run.getMonthRuns();
+            toReturn.add(new BarEntry(i+1, monthRuns));
         }
         return toReturn;
-
-
     }
 
+    private List<BarEntry> getRunsPerSeasonEntries(List<RunViewModel> runs){
+        ArrayList<BarEntry> toReturn = new ArrayList<>();
 
-    /**
-     * Method that calculates total distance of entries.
-     *
-     * @param entries   This is a List of Entry objects that contains the original daily stats.
-     * @return A list containing Entry objects representing the total distance.
-     */
-    private List<Entry> getTotalDistanceEntries(List<RunVM> entries){
-        ArrayList<Entry> toReturn = new ArrayList<>();
-
-
-        for (int i = 0; i < entries.size(); i++){
-            RunVM run = entries.get(i);
-            float totalDistance = run.getTotalDistance();
-            toReturn.add(new Entry(i+1, totalDistance));
-
-
+        for (int i = 0; i < runs.size(); i++){
+            RunViewModel run = runs.get(i);
+            int seasonRuns = run.getSeasonRuns();
+            toReturn.add(new BarEntry(i+1, seasonRuns));
         }
         return toReturn;
-
-
     }
-
-
-
 }
