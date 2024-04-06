@@ -11,7 +11,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             app:navigationIcon="@drawable/ic_baseline_filter_alt_24"
-            app:title="@string/dropdown_menu_statistics"
+            app:title="@string/total_run_menu_statistics"
             app:navigationIconTint="?attr/colorControlNormal"/>
     </com.google.android.material.appbar.AppBarLayout>
 

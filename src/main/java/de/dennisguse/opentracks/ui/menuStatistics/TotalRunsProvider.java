@@ -82,7 +82,7 @@ public class TotalRunsProvider {
         runIdCtr++;
         RunViewModel dummyRun2 = new RunViewModel(runIdCtr, 3, 33, 45, 497);
         runIdCtr++;
-        RunViewModel dummyRun3 = new RunViewModel(runIdCtr, 98, 24, 56, 500);
+        RunViewModel dummyRun3 = new RunViewModel(runIdCtr, 29, 24, 56, 500);
         runIdCtr++;
         RunViewModel dummyRun4 = new RunViewModel(runIdCtr, 14, 32, 56, 655);
         runIdCtr++;
@@ -141,7 +141,7 @@ public class TotalRunsProvider {
         runIdCtr++;
         RunViewModel dummyRun13 = new RunViewModel(runIdCtr, 20, 37, 98, 222);
         runIdCtr++;
-        RunViewModel dummyRun14 = new RunViewModel(runIdCtr, 18, 91, 98, 103);
+        RunViewModel dummyRun14 = new RunViewModel(runIdCtr, 18, 91, 52, 103);
         runIdCtr++;
 
         runs.add(dummyRun1);

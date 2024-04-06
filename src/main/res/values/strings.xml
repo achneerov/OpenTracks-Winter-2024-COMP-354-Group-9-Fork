@@ -852,4 +852,6 @@ limitations under the License.
     <string name="season">Season</string>
     <string name="dropdown_menu_statistics">Dropdown Menu Statistics</string>
     <string name="filter_graph">Filter Graph</string>
+    <string name="total_run_menu_statistics">Total Run Menu Statistics</string>
+    <string name="see_menu_selection_image">See Menu Selection Image</string>
 </resources>

@@ -2,7 +2,6 @@ package de.dennisguse.opentracks.ui.menuStatistics;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 import com.github.mikephil.charting.charts.BarChart;
 import de.dennisguse.opentracks.AbstractActivity;
@@ -19,7 +18,7 @@ public class MenuStatisticsActivity extends AbstractActivity implements AdapterV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Spinner graph_selector = findViewById(R.id.graph_selector);
-        ArrayAdapter<GraphChoice> array_metrics = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, GraphChoice.values());
+        GraphChoiceAdapter array_metrics = new GraphChoiceAdapter(this, GraphChoice.values());
         graph_selector.setAdapter(array_metrics);
         barChart = findViewById(R.id.barChart);
         graph_selector.setOnItemSelectedListener(this);
