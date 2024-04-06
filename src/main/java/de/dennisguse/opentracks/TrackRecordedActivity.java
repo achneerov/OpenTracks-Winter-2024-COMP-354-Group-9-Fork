@@ -49,6 +49,7 @@ import de.dennisguse.opentracks.services.TrackRecordingServiceConnection;
 import de.dennisguse.opentracks.settings.SettingsActivity;
 import de.dennisguse.opentracks.share.ShareUtils;
 import de.dennisguse.opentracks.ui.aggregatedStatistics.ConfirmDeleteDialogFragment;
+import de.dennisguse.opentracks.ui.dropDownMenuStatistics.MenuStatisticsActivity;
 import de.dennisguse.opentracks.ui.intervals.IntervalsFragment;
 import de.dennisguse.opentracks.ui.markers.MarkerListActivity;
 import de.dennisguse.opentracks.util.IntentDashboardUtils;
@@ -209,6 +210,11 @@ public class TrackRecordedActivity extends AbstractTrackDeleteActivity implement
         if (item.getItemId() == R.id.track_detail_share) {
             Intent intent = Intent.createChooser(ShareUtils.newShareFileIntent(this, trackId), null);
             startActivity(intent);
+            return true;
+        }
+
+        if (item.getItemId() == R.id.filter) {
+            startActivity(IntentUtils.newIntent(this, MenuStatisticsActivity.class));
             return true;
         }
 

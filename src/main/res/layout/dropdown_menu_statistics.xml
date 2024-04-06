@@ -10,39 +10,29 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
+            app:navigationIcon="@drawable/ic_baseline_filter_alt_24"
             app:title="@string/dropdown_menu_statistics"
             app:navigationIconTint="?attr/colorControlNormal"/>
     </com.google.android.material.appbar.AppBarLayout>
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/dayChart"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:paddingBottom="?attr/actionBarSize"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/weekChart"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
+        <Spinner
+            android:id="@+id/graph_selector"
+            android:layout_width="match_parent"
+            android:layout_height="@android:dimen/app_icon_size" />
 
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/monthChart"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-
-    <com.github.mikephil.charting.charts.LineChart
-        android:id="@+id/seasonChart"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1" />
-</LinearLayout>
+        <com.github.mikephil.charting.charts.LineChart
+            android:id="@+id/barChart"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+    </LinearLayout>
 
     <include
         android:id="@+id/bottom_app_bar_layout"

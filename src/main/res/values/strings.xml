@@ -851,4 +851,5 @@ limitations under the License.
     <string name="month">Month</string>
     <string name="season">Season</string>
     <string name="dropdown_menu_statistics">Dropdown Menu Statistics</string>
+    <string name="filter_graph">Filter Graph</string>
 </resources>
