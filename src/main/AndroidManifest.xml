@@ -76,6 +76,9 @@
             android:label="@string/title_activity_leaderboard"
             android:theme="@style/OpenTracksTheme.NoActionBar" />
         <activity
+            android:name=".ui.menuStatistics.MenuStatisticsActivity"
+            android:exported="false" />
+        <activity
             android:name=".settings.MaintenanceInfo"
             android:exported="true" />
         <activity
@@ -369,7 +372,8 @@
             android:launchMode="singleInstance"
             android:process=":crash" />
         <activity android:name=".ui.aggregatedStatistics.StatisticsActivity"
-            android:exported="true">
+            android:exported="true"
+            tools:ignore="DuplicateActivity">
             <!--        <intent-filter>-->
             <!--            <action android:name="android.intent.action.MAIN" />-->
 

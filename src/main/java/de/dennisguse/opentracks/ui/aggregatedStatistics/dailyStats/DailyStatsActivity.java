@@ -24,16 +24,16 @@ public class DailyStatsActivity extends AbstractActivity implements AdapterView.
         super.onCreate(savedInstanceState);
 
         // Create and populate the spin_metrics spinner with Metric enums.
-        Spinner spin_metrics = (Spinner)findViewById(R.id.daily_metric);
+        Spinner spin_metrics = findViewById(R.id.daily_metric);
         ArrayAdapter<Metric> array_metrics = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Metric.values());
         spin_metrics.setAdapter(array_metrics);
 
         // Create and populate the spin_freq spinner with Metric enums.
-        Spinner spin_freq = (Spinner)findViewById(R.id.daily_data_point);
+        Spinner spin_freq = findViewById(R.id.daily_data_point);
         ArrayAdapter<Frequency> array_freq = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, Frequency.values());
         spin_freq.setAdapter(array_freq);
 
-        line_chart = (LineChart) findViewById(R.id.dailyChart);
+        line_chart = findViewById(R.id.dailyChart);
 
         // Attach one listener to both spinners
         spin_metrics.setOnItemSelectedListener(this);

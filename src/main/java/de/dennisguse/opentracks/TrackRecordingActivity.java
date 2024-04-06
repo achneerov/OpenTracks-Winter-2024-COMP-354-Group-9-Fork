@@ -41,7 +41,7 @@ import de.dennisguse.opentracks.services.TrackRecordingServiceConnection;
 import de.dennisguse.opentracks.services.handlers.GpsStatusValue;
 import de.dennisguse.opentracks.settings.PreferencesUtils;
 import de.dennisguse.opentracks.settings.SettingsActivity;
-import de.dennisguse.opentracks.ui.dropDownMenuStatistics.MenuStatisticsActivity;
+import de.dennisguse.opentracks.ui.menuStatistics.MenuStatisticsActivity;
 import de.dennisguse.opentracks.ui.intervals.IntervalsFragment;
 import de.dennisguse.opentracks.ui.markers.MarkerEditActivity;
 import de.dennisguse.opentracks.ui.markers.MarkerListActivity;
