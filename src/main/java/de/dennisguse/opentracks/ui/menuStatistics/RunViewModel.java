@@ -1,8 +1,5 @@
 package de.dennisguse.opentracks.ui.menuStatistics;
 
-/**
- * A view model representing a run for visualizing bar chart menu statistics.
- */
 public class RunViewModel {
     private int id;
     private final int dayRuns;

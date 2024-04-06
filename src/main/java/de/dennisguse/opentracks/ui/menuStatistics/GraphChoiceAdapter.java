@@ -38,7 +38,7 @@ public class GraphChoiceAdapter extends ArrayAdapter<GraphChoice> {
         assert choice != null;
         textView.setText(choice.toString());
         textView.setCompoundDrawablesWithIntrinsicBounds(choice.getDrawableRes(), 0, 0, 0);
-        int padding = (int) (16 * getContext().getResources().getDisplayMetrics().density);
+        int padding = (int) (10 * getContext().getResources().getDisplayMetrics().density);
         textView.setCompoundDrawablePadding(padding);
         return view;
     }
