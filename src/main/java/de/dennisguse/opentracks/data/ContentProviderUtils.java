@@ -214,6 +214,34 @@ public class ContentProviderUtils {
         return tracks;
     }
 
+    //Returns list of tracks done within a given period of time
+    public List<Track> getTracks(Instant startTime, Instant endTime) {
+        // Convert the Instant objects to milliseconds since epoch
+        long startTimeMillis = startTime.toEpochMilli();
+        long endTimeMillis = endTime.toEpochMilli();
+
+        // Define the selection and selectionArgs for the query
+        String selection = TracksColumns.STARTTIME + " >= ? AND " + TracksColumns.STOPTIME + " <= ?";
+        String[] selectionArgs = new String[] { String.valueOf(startTimeMillis), String.valueOf(endTimeMillis) };
+
+        // Query the database for tracks within the time period
+        Cursor cursor = contentResolver.query(TracksColumns.CONTENT_URI, null, selection, selectionArgs, null);
+
+        // Create a list to hold the resulting tracks
+        List<Track> tracks = new ArrayList<>();
+
+        // Iterate over the results and create Track objects
+        if (cursor != null) {
+            while (cursor.moveToNext()) {
+                Track track = createTrack(cursor);
+                tracks.add(track);
+            }
+            cursor.close();
+        }
+
+        return tracks;
+    }
+
     public List<Track> getTracks(ContentProviderSelectionInterface selection) {
         SelectionData selectionData = selection.buildSelection();
         ArrayList<Track> tracks = new ArrayList<>();

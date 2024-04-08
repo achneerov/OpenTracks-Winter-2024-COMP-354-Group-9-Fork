@@ -15,7 +15,7 @@ public class MenuStatisticsActivity extends AbstractActivity implements AdapterV
     // These are the private fields for the activity.
     private MenuStatisticsBinding viewBinding;
     private GraphChoice selectedGraph = null;
-    private final MenuPlottingModule menuPlottingModule = new MenuPlottingModule();
+    private final MenuPlottingModule menuPlottingModule = new MenuPlottingModule(this);
     private BarChart barChart;
 
     // This method is called when the activity is created.

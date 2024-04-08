@@ -1,5 +1,6 @@
 package de.dennisguse.opentracks.ui.menuStatistics;
 
+import android.content.Context;
 import android.graphics.Color;
 
 import com.github.mikephil.charting.charts.BarChart;
@@ -24,28 +25,34 @@ public class MenuPlottingModule {
     // These are the labels for the x-axis.
     String[] xAxisLabels = null;
 
+    private final TotalRunsProvider totalRunsProvider;
+
+    public MenuPlottingModule(Context context) {
+        this.totalRunsProvider = new TotalRunsProvider(context);
+    }
+
     // This method plots a graph on the given BarChart based on the GraphChoice.
     public void plotGraph(BarChart barChart, GraphChoice choice) {
 
         // The choice determines the type of data entries and the color of the data set.
         switch (choice) {
             case DAY -> {
-                dataEntries = getRunsPerHourEntries(TotalRunsProvider.getRunsPerHour());
+                dataEntries = getRunsPerHourEntries(totalRunsProvider.getRunsPerHour());
                 dataSet = new BarDataSet(dataEntries, "Number of Runs per Hour");
                 dataSet.setColor(Color.parseColor("#2774AE"));
             }
             case WEEK -> {
-                dataEntries = getRunsPerWeekdayEntries(TotalRunsProvider.getRunsPerWeekday());
+                dataEntries = getRunsPerWeekdayEntries(totalRunsProvider.getRunsPerWeekday());
                 dataSet = new BarDataSet(dataEntries, "Number of Runs per Weekday");
                 dataSet.setColor(Color.parseColor("#ED9121"));
             }
             case MONTH -> {
-                dataEntries = getRunsPerMonthEntries(TotalRunsProvider.getRunsPerMonth());
+                dataEntries = getRunsPerMonthEntries(totalRunsProvider.getRunsPerMonth());
                 dataSet = new BarDataSet(dataEntries, "Number of Runs per Month");
                 dataSet.setColor(Color.parseColor("#F8DE7E"));
             }
             case SEASON -> {
-                dataEntries = getRunsPerSeasonEntries(TotalRunsProvider.getRunsPerSeason());
+                dataEntries = getRunsPerSeasonEntries(totalRunsProvider.getRunsPerSeason());
                 dataSet = new BarDataSet(dataEntries, "Number of Runs per Season");
                 dataSet.setColor(Color.parseColor("#8DB600"));
             }
